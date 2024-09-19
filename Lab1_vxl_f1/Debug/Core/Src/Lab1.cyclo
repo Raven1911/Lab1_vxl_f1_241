@@ -1,0 +1,5 @@
+../Core/Src/Lab1.c:11:6:System_init_Lab1	1
+../Core/Src/Lab1.c:24:6:calculator_Led_Clock_ON_OFF	99
+../Core/Src/Lab1.c:79:6:clearAllClock	2
+../Core/Src/Lab1.c:85:6:loop_Led	1
+../Core/Src/Lab1.c:100:6:setNumberOnClock	1

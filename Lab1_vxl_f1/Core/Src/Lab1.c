@@ -11,7 +11,7 @@
 void System_init_Lab1(){
 	timer_init();
 	setTimer(0, 1000);
-
+	clearAllClock();
 }
 
 
@@ -75,6 +75,13 @@ void calculator_Led_Clock_ON_OFF(int num, int condition){
 	}
 
 }
+
+void clearAllClock(){
+	for(int i = 0; i < 12; i++){
+		Led[i] |= 0b1;
+	}
+}
+
 void loop_Led(){
 	HAL_GPIO_WritePin(Led_0_GPIO_Port, Led_0_Pin, Led[0]);
 	HAL_GPIO_WritePin(Led_1_GPIO_Port, Led_1_Pin, Led[1]);

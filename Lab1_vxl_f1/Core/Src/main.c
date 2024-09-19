@@ -96,6 +96,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int counter = 0;
+
   while (1)
   {
     /* USER CODE END WHILE */
