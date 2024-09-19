@@ -1,1 +1,4 @@
 ../Core/Src/Lab1.c:11:6:System_init_Lab1	8	static
+../Core/Src/Lab1.c:27:6:calculator_BCD_to_7SEG	72	static
+../Core/Src/Lab1.c:74:6:display7SEG	16	static
+../Core/Src/Lab1.c:86:6:test_case_7seg	8	static

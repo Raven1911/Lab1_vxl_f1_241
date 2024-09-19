@@ -19,6 +19,7 @@ void Exercise_3();
 
 
 void display7SEG(int num);
+void test_case_7seg();
 
 void Exercise_5();
 void Exercise_6();

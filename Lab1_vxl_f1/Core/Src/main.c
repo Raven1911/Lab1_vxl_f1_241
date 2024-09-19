@@ -90,7 +90,7 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  System_init_Lab1();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -100,6 +100,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  test_case_7seg();
   }
   /* USER CODE END 3 */
 }
@@ -198,16 +199,30 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, Led_Red_Pin|Led_Yellow_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, Led_Red_Pin|Led_Yellow_Pin|SEG_0_Pin|SEG_1_Pin
+                          |SEG_2_Pin|SEG_3_Pin|SEG_4_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : Led_Red_Pin Led_Yellow_Pin */
-  GPIO_InitStruct.Pin = Led_Red_Pin|Led_Yellow_Pin;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, SEG_5_Pin|SEG_6_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : Led_Red_Pin Led_Yellow_Pin SEG_0_Pin SEG_1_Pin
+                           SEG_2_Pin SEG_3_Pin SEG_4_Pin */
+  GPIO_InitStruct.Pin = Led_Red_Pin|Led_Yellow_Pin|SEG_0_Pin|SEG_1_Pin
+                          |SEG_2_Pin|SEG_3_Pin|SEG_4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SEG_5_Pin SEG_6_Pin */
+  GPIO_InitStruct.Pin = SEG_5_Pin|SEG_6_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
