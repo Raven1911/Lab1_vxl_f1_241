@@ -207,7 +207,9 @@ static void MX_GPIO_Init(void)
                           |SEG_2_Pin|SEG_3_Pin|SEG_4_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, SEG_5_Pin|SEG_6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, SEG_5_Pin|SEG_6_Pin|SEG1_0_Pin|SEG1_1_Pin
+                          |SEG1_2_Pin|SEG1_3_Pin|SEG1_4_Pin|SEG1_5_Pin
+                          |SEG1_6_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : Led_Red_Pin Led_Yellow_Pin Led_Green_Pin Led_Red2_Pin
                            Led_Yellow2_Pin Led_Green2_Pin SEG_0_Pin SEG_1_Pin
@@ -220,8 +222,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SEG_5_Pin SEG_6_Pin */
-  GPIO_InitStruct.Pin = SEG_5_Pin|SEG_6_Pin;
+  /*Configure GPIO pins : SEG_5_Pin SEG_6_Pin SEG1_0_Pin SEG1_1_Pin
+                           SEG1_2_Pin SEG1_3_Pin SEG1_4_Pin SEG1_5_Pin
+                           SEG1_6_Pin */
+  GPIO_InitStruct.Pin = SEG_5_Pin|SEG_6_Pin|SEG1_0_Pin|SEG1_1_Pin
+                          |SEG1_2_Pin|SEG1_3_Pin|SEG1_4_Pin|SEG1_5_Pin
+                          |SEG1_6_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

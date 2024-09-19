@@ -18,7 +18,7 @@ void Exercise_2();
 void Exercise_3();
 
 
-void display7SEG(int num);
+void display7SEG(int index, int num);
 void test_case_7seg();
 
 void Exercise_5();

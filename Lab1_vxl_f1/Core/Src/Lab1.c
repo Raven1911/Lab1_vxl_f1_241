@@ -70,15 +70,31 @@ void calculator_BCD_to_7SEG(int num){
 }
 
 
-void display7SEG(int num){
+void display7SEG(int index, int num){
 	calculator_BCD_to_7SEG(num);
-    HAL_GPIO_WritePin(SEG_0_GPIO_Port, SEG_0_Pin, !a);
-    HAL_GPIO_WritePin(SEG_1_GPIO_Port, SEG_1_Pin, !b);
-    HAL_GPIO_WritePin(SEG_2_GPIO_Port, SEG_2_Pin, !c);
-    HAL_GPIO_WritePin(SEG_3_GPIO_Port, SEG_3_Pin, !d);
-    HAL_GPIO_WritePin(SEG_4_GPIO_Port, SEG_4_Pin, !e);
-    HAL_GPIO_WritePin(SEG_5_GPIO_Port, SEG_5_Pin, !f);
-    HAL_GPIO_WritePin(SEG_6_GPIO_Port, SEG_6_Pin, !g);
+	switch (index) {
+		case 0:
+		    HAL_GPIO_WritePin(SEG_0_GPIO_Port, SEG_0_Pin, !a);
+		    HAL_GPIO_WritePin(SEG_1_GPIO_Port, SEG_1_Pin, !b);
+		    HAL_GPIO_WritePin(SEG_2_GPIO_Port, SEG_2_Pin, !c);
+		    HAL_GPIO_WritePin(SEG_3_GPIO_Port, SEG_3_Pin, !d);
+		    HAL_GPIO_WritePin(SEG_4_GPIO_Port, SEG_4_Pin, !e);
+		    HAL_GPIO_WritePin(SEG_5_GPIO_Port, SEG_5_Pin, !f);
+		    HAL_GPIO_WritePin(SEG_6_GPIO_Port, SEG_6_Pin, !g);
+			break;
+		case 1:
+		    HAL_GPIO_WritePin(SEG1_0_GPIO_Port, SEG1_0_Pin, !a);
+		    HAL_GPIO_WritePin(SEG1_1_GPIO_Port, SEG1_1_Pin, !b);
+		    HAL_GPIO_WritePin(SEG1_2_GPIO_Port, SEG1_2_Pin, !c);
+		    HAL_GPIO_WritePin(SEG1_3_GPIO_Port, SEG1_3_Pin, !d);
+		    HAL_GPIO_WritePin(SEG1_4_GPIO_Port, SEG1_4_Pin, !e);
+		    HAL_GPIO_WritePin(SEG1_5_GPIO_Port, SEG1_5_Pin, !f);
+		    HAL_GPIO_WritePin(SEG1_6_GPIO_Port, SEG1_6_Pin, !g);
+			break;
+		default:
+			break;
+	}
+
 }
 
 
@@ -101,14 +117,17 @@ typedef enum {state_0, state_1, state_2, state_3} state;
 state pre_state = state_0;
 
 uint8_t count_7seg = 3;
+uint8_t count_7seg1 = 5;
 void Exercise_5(){
 	switch (pre_state) {
 
 		case state_0:
 			//7segment display
-			display7SEG(count_7seg);
+			display7SEG(0, count_7seg);
+			display7SEG(1, count_7seg1);
 			//traffic
 			decoder_Led(0, 1, 1, 1, 1, 0);
+
 			if(flag_timer[0]){
 				pre_state = state_1;
 				flag_timer[0] = 0;
@@ -118,15 +137,19 @@ void Exercise_5(){
 			if(flag_timer[1]){
 				count_7seg--;
 				if(count_7seg < 1) count_7seg = 2;
+				count_7seg1--;
+
 				flag_timer[1] = 0;
 			}
 			break;
 
 		case state_1:
 			//7segment display
-			display7SEG(count_7seg);
+			display7SEG(0, count_7seg);
+			display7SEG(1, count_7seg1);
 			//traffic
 			decoder_Led(0, 1, 1, 1, 0, 1);
+
 			if(flag_timer[0]){
 				pre_state = state_2;
 				flag_timer[0] = 0;
@@ -135,15 +158,19 @@ void Exercise_5(){
 			if(flag_timer[1]){
 				count_7seg--;
 				if(count_7seg < 1) count_7seg = 5;
+				count_7seg1--;
+				if(count_7seg1 < 1) count_7seg1 = 3;
 				flag_timer[1] = 0;
 			}
 			break;
 
 		case state_2:
 			//7segment display
-			display7SEG(count_7seg);
+			display7SEG(0, count_7seg);
+			display7SEG(1, count_7seg1);
 			//traffic
 			decoder_Led(1, 1, 0, 0, 1, 1);
+
 			if(flag_timer[0]){
 				pre_state = state_3;
 				flag_timer[0] = 0;
@@ -152,15 +179,19 @@ void Exercise_5(){
 			if(flag_timer[1]){
 				count_7seg--;
 				//if(count_7seg < 1) count_7seg = 2;
+				count_7seg1--;
+				if(count_7seg1 < 1) count_7seg1 = 2;
 				flag_timer[1] = 0;
 			}
 			break;
 
 		case state_3:
 			//7segment display
-			display7SEG(count_7seg);
+			display7SEG(0, count_7seg);
+			display7SEG(1, count_7seg1);
 			//traffic
 			decoder_Led(1, 0, 1, 0, 1, 1);;
+
 			if(flag_timer[0]){
 				pre_state = state_0;
 				flag_timer[0] = 0;
@@ -169,6 +200,8 @@ void Exercise_5(){
 			if(flag_timer[1]){
 				count_7seg--;
 				if(count_7seg < 1) count_7seg = 3;
+				count_7seg1--;
+				if(count_7seg1 < 1) count_7seg1 = 5;
 				flag_timer[1] = 0;
 			}
 			break;

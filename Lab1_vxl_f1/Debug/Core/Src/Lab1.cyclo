@@ -1,5 +1,5 @@
 ../Core/Src/Lab1.c:11:6:System_init_Lab1	1
 ../Core/Src/Lab1.c:26:6:calculator_BCD_to_7SEG	1
-../Core/Src/Lab1.c:73:6:display7SEG	1
-../Core/Src/Lab1.c:87:6:decoder_Led	1
-../Core/Src/Lab1.c:104:6:Exercise_5	16
+../Core/Src/Lab1.c:73:6:display7SEG	3
+../Core/Src/Lab1.c:103:6:decoder_Led	1
+../Core/Src/Lab1.c:121:6:Exercise_5	19
