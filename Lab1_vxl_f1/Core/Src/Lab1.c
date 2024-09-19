@@ -10,14 +10,13 @@
 
 void System_init_Lab1(){
 	timer_init();
-	setTimer(0, 1000);
+	setTimer(0, 3000);
+	setTimer(1, 1000); // step led 7 segment
 
 }
 
 
 ////////////////            DISPLAY-7SEG             ////////////////
-
-
 
 // 4bit [3:0] -> [A:B]
 uint8_t A, B, C, D;
@@ -82,18 +81,100 @@ void display7SEG(int num){
     HAL_GPIO_WritePin(SEG_6_GPIO_Port, SEG_6_Pin, !g);
 }
 
-int counter = 0;
-void test_case_7seg(){
-	if(flag_timer[0]){
-		if(counter >= 10) counter = 0;
-		display7SEG(counter++);
-		flag_timer[0] = 0;
-
-	}
 
 
+//////////////////////
+void decoder_Led(int R, int Y, int G, int R2, int Y2, int G2){
+	//traffic light 1
+	HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, R);
+	HAL_GPIO_WritePin(Led_Yellow_GPIO_Port, Led_Yellow_Pin, Y);
+	HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, G);
+
+	//traffic light 2
+	HAL_GPIO_WritePin(Led_Red2_GPIO_Port, Led_Red2_Pin, R2);
+	HAL_GPIO_WritePin(Led_Yellow2_GPIO_Port, Led_Yellow2_Pin, Y2);
+	HAL_GPIO_WritePin(Led_Green2_GPIO_Port, Led_Green2_Pin, G2);
 }
+/////////////////////////////////////////TRAFFIC_LIGHT////////////////////////////////////////////////////
+//// 4 way traffic light
+typedef enum {state_0, state_1, state_2, state_3} state;
+state pre_state = state_0;
 
+uint8_t count_7seg = 3;
+void Exercise_5(){
+	switch (pre_state) {
 
+		case state_0:
+			//7segment display
+			display7SEG(count_7seg);
+			//traffic
+			decoder_Led(0, 1, 1, 1, 1, 0);
+			if(flag_timer[0]){
+				pre_state = state_1;
+				flag_timer[0] = 0;
+				setTimer(0, 2000);
+			}
+
+			if(flag_timer[1]){
+				count_7seg--;
+				if(count_7seg < 1) count_7seg = 2;
+				flag_timer[1] = 0;
+			}
+			break;
+
+		case state_1:
+			//7segment display
+			display7SEG(count_7seg);
+			//traffic
+			decoder_Led(0, 1, 1, 1, 0, 1);
+			if(flag_timer[0]){
+				pre_state = state_2;
+				flag_timer[0] = 0;
+				setTimer(0, 3000);
+			}
+			if(flag_timer[1]){
+				count_7seg--;
+				if(count_7seg < 1) count_7seg = 5;
+				flag_timer[1] = 0;
+			}
+			break;
+
+		case state_2:
+			//7segment display
+			display7SEG(count_7seg);
+			//traffic
+			decoder_Led(1, 1, 0, 0, 1, 1);
+			if(flag_timer[0]){
+				pre_state = state_3;
+				flag_timer[0] = 0;
+				setTimer(0, 2000);
+			}
+			if(flag_timer[1]){
+				count_7seg--;
+				//if(count_7seg < 1) count_7seg = 2;
+				flag_timer[1] = 0;
+			}
+			break;
+
+		case state_3:
+			//7segment display
+			display7SEG(count_7seg);
+			//traffic
+			decoder_Led(1, 0, 1, 0, 1, 1);;
+			if(flag_timer[0]){
+				pre_state = state_0;
+				flag_timer[0] = 0;
+				setTimer(0, 3000);
+			}
+			if(flag_timer[1]){
+				count_7seg--;
+				if(count_7seg < 1) count_7seg = 3;
+				flag_timer[1] = 0;
+			}
+			break;
+		default:
+			break;
+	}
+}
 
 

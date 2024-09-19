@@ -45,6 +45,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 //			timer_run(i);
 //		}
 		timer_run(0);
+		timer_run(1);
 	}
 
 
