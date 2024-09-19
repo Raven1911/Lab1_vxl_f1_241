@@ -21,7 +21,7 @@ void Exercise_3();
 void display7SEG(int num);
 
 void Exercise_5();
-void Exercise_6();
+void SEL_LED_ON(int num);
 void Exercise_7();
 void Exercise_8();
 void Exercise_9();
