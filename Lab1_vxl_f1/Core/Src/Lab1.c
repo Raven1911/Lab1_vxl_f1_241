@@ -82,7 +82,7 @@ void display7SEG(int num){
     HAL_GPIO_WritePin(SEG_6_GPIO_Port, SEG_6_Pin, !g);
 }
 
-uint8_t counter = 0;
+int counter = 0;
 void test_case_7seg(){
 	if(flag_timer[0]){
 		if( counter >= 10) counter = 0;
