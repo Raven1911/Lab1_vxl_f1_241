@@ -85,8 +85,9 @@ void display7SEG(int num){
 int counter = 0;
 void test_case_7seg(){
 	if(flag_timer[0]){
-		if( counter >= 10) counter = 0;
+		//if(counter >= 10) counter = 0;
 		display7SEG(counter++);
+		//HAL_Delay(1000);
 		flag_timer[0] = 0;
 	}
 

@@ -1,4 +1,4 @@
 ../Core/Src/Lab1.c:11:6:System_init_Lab1	1
 ../Core/Src/Lab1.c:27:6:calculator_BCD_to_7SEG	1
 ../Core/Src/Lab1.c:74:6:display7SEG	1
-../Core/Src/Lab1.c:86:6:test_case_7seg	3
+../Core/Src/Lab1.c:86:6:test_case_7seg	2
