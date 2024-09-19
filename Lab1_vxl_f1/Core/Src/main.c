@@ -95,17 +95,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
+  int counter = 0;
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  SEL_LED_ON(2);
+	  if(counter > 11) counter = 0;
+	  setNumberOnClock(counter++);
 	  HAL_Delay(1000);
-	  clearAllClock();
-	  HAL_Delay(1000);
-
 
   }
   /* USER CODE END 3 */

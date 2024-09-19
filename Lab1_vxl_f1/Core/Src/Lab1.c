@@ -17,12 +17,12 @@ void System_init_Lab1(){
 
 
 uint8_t A3, A2, A1, A0;
+
 bool Led[12];
 
 
-void calculator_Led_Clock(int num){
+void calculator_Led_Clock_ON_OFF(int num, int condition){
 	uint8_t buffer;
-
 	unsigned int Led_Clock[] = {
 			0b0000, //0
 			0b0001,
@@ -43,39 +43,38 @@ void calculator_Led_Clock(int num){
 	A1 = (buffer>>1) & 1;
 	A0 = (buffer>>0) & 1;
 
-	Led[0] = (A3) || (A2) || (A1) || (A0);
-	Led[1] = (A3) || (A2) || (A1) || (!A0);
-	Led[2] = (A3) || (A2) || (!A1) || (A0);
-	Led[3] = (A3) || (A2) || (!A1) || (!A0);
-	Led[4] = (A3) || (!A2) || (A1) || (A0);
-	Led[5] = (A3) || (!A2) || (A1) || (!A0);
-	Led[6] = (A3) || (!A2) || (!A1) || (A0);
-	Led[7] = (A3) || (!A2) || (!A1) || (!A0);
-	Led[8] = (!A3) || (A2) || (A1) || (A0);
-	Led[9] = (!A3) || (A2) || (A1) || (!A0);
-	Led[10] = (!A3) || (A2) || (!A1) || (A0);
-	Led[11] = (!A3) || (A2) || (!A1) || (!A0);
-//
-//	printf("A3: %d ", A3);
-//	printf("A2: %d ", A2);
-//	printf("A1: %d ", A1);
-//	printf("A0: %d \n", A0);
-//
-//	printf("Led0: %d ", Led_0);
-//	printf("Led1: %d ", Led_1);
-//	printf("Led2: %d ", Led_2);
-//	printf("Led3: %d ", Led_3);
-//	printf("Led4: %d ", Led_4);
-//	printf("Led5: %d ", Led_5);
-//	printf("Led6: %d ", Led_6);
-//	printf("Led7: %d ", Led_7);
-//	printf("Led8: %d ", Led_8);
-//	printf("Led9: %d ", Led_9);
-//	printf("Led10: %d ", Led_10);
-//	printf("Led11: %d \n", Led_11);
-//	printf("------------------------- \n");
-}
+	// f(..)led on (0)
+	if(!condition){
+		Led[0] &= (A3) || (A2) || (A1) || (A0);
+		Led[1] &= (A3) || (A2) || (A1) || (!A0);
+		Led[2] &= (A3) || (A2) || (!A1) || (A0);
+		Led[3] &= (A3) || (A2) || (!A1) || (!A0);
+		Led[4] &= (A3) || (!A2) || (A1) || (A0);
+		Led[5] &= (A3) || (!A2) || (A1) || (!A0);
+		Led[6] &= (A3) || (!A2) || (!A1) || (A0);
+		Led[7] &= (A3) || (!A2) || (!A1) || (!A0);
+		Led[8] &= (!A3) || (A2) || (A1) || (A0);
+		Led[9] &= (!A3) || (A2) || (A1) || (!A0);
+		Led[10] &= (!A3) || (A2) || (!A1) || (A0);
+		Led[11] &= (!A3) || (A2) || (!A1) || (!A0);
+	}
+	// f(..)led off (1)
+	if(condition){
+		Led[0] |= !A3 && !A2 && !A1 && !A0;
+		Led[1] |= !A3 && !A2 && !A1 && A0;
+		Led[2] |= !A3 && !A2 && A1 && !A0;
+		Led[3] |= !A3 && !A2 && A1 && A0;
+		Led[4] |= !A3 && A2 && !A1 && !A0;
+		Led[5] |= !A3 && A2 && !A1 && A0;
+		Led[6] |= !A3 && A2 && A1 && !A0;
+		Led[7] |= !A3 && A2 && A1 && A0;
+		Led[8] |= A3 && !A2 && !A1 && !A0;
+		Led[9] |= A3 && !A2 && !A1 && A0;
+		Led[10] |= A3 && !A2 && A1 && !A0;
+	    Led[11] |= A3 && !A2 && A1 && A0;
+	}
 
+}
 void loop_Led(){
 	HAL_GPIO_WritePin(Led_0_GPIO_Port, Led_0_Pin, Led[0]);
 	HAL_GPIO_WritePin(Led_1_GPIO_Port, Led_1_Pin, Led[1]);
@@ -91,15 +90,8 @@ void loop_Led(){
 	HAL_GPIO_WritePin(Led_11_GPIO_Port, Led_11_Pin, Led[11]);
 }
 
-void SEL_LED_ON(int num){
-	calculator_Led_Clock(num);
-	loop_Led();
-}
-
-void clearAllClock(){
-	for(int i = 0; i < 11; i++){
-		Led[i] |= 0b1;
-	}
+void setNumberOnClock(int num){
+	calculator_Led_Clock_ON_OFF(num, 0);
 	loop_Led();
 }
 

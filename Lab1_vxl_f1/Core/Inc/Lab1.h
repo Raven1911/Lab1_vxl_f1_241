@@ -23,7 +23,7 @@ void display7SEG(int num);
 void Exercise_5();
 void SEL_LED_ON(int num);
 void clearAllClock();
-void Exercise_8();
+void setNumberOnClock(int num);
 void Exercise_9();
 void Exercise_10();
 
