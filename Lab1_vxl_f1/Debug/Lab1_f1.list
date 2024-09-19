@@ -799,7 +799,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
  800062a:	681b      	ldr	r3, [r3, #0]
  800062c:	f1b3 4f80 	cmp.w	r3, #1073741824	@ 0x40000000
  8000630:	d10d      	bne.n	800064e <HAL_TIM_PeriodElapsedCallback+0x2e>
-		for(int i = 0; i <= sizeof(flag_timer); i++){
+		for(int i = 0; i <= sizeof(flag_timer) / sizeof(flag_timer[0]); i++){
  8000632:	2300      	movs	r3, #0
  8000634:	60fb      	str	r3, [r7, #12]
  8000636:	e007      	b.n	8000648 <HAL_TIM_PeriodElapsedCallback+0x28>
@@ -808,12 +808,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
  800063a:	b2db      	uxtb	r3, r3
  800063c:	4618      	mov	r0, r3
  800063e:	f7ff ffbd 	bl	80005bc <timer_run>
-		for(int i = 0; i <= sizeof(flag_timer); i++){
+		for(int i = 0; i <= sizeof(flag_timer) / sizeof(flag_timer[0]); i++){
  8000642:	68fb      	ldr	r3, [r7, #12]
  8000644:	3301      	adds	r3, #1
  8000646:	60fb      	str	r3, [r7, #12]
  8000648:	68fb      	ldr	r3, [r7, #12]
- 800064a:	2b14      	cmp	r3, #20
+ 800064a:	2b0a      	cmp	r3, #10
  800064c:	d9f4      	bls.n	8000638 <HAL_TIM_PeriodElapsedCallback+0x18>
 		}
 	}
