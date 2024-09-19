@@ -24,7 +24,6 @@ void Exercise_1(){
 		HAL_GPIO_WritePin(Led_Yellow_GPIO_Port, Led_Yellow_Pin, bool_yellow);
 		bool_red = !bool_red;
 		bool_yellow = !bool_yellow;
-
 		flag_timer[0] = 0;
 	}
 }
