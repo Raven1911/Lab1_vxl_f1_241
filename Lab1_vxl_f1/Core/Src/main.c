@@ -95,16 +95,25 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int counter = 0;
-
+  int count = 0;
+  int condition = 1;
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if(counter > 11) counter = 0;
-	  setNumberOnClock(counter++);
-	  HAL_Delay(1000);
+	    if(condition){
+	    	setNumberOnClock(count);
+	    }
+	    if(!condition){
+	        clearNumberOnClock(count);
+	        }
+	    count++;
+	    if (count >11) {
+	    	count = 0;
+	    	condition = !condition;
+	    }
+	    HAL_Delay(500);
 
   }
   /* USER CODE END 3 */

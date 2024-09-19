@@ -24,7 +24,7 @@ void Exercise_5();
 void SEL_LED_ON(int num);
 void clearAllClock();
 void setNumberOnClock(int num);
-void Exercise_9();
+void clearNumberOnClock(int num);
 void Exercise_10();
 
 #endif /* INC_LAB1_H_ */

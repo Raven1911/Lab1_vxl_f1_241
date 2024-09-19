@@ -102,5 +102,8 @@ void setNumberOnClock(int num){
 	loop_Led();
 }
 
-
+void  clearNumberOnClock(int num){
+	calculator_Led_Clock_ON_OFF(num, 1);
+	loop_Led();
+}
 
