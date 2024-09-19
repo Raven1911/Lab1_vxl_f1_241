@@ -76,8 +76,7 @@ void calculator_Led_Clock(int num){
 //	printf("------------------------- \n");
 }
 
-void SEL_LED_ON(int num){
-	calculator_Led_Clock(num);
+void loop_Led(){
 	HAL_GPIO_WritePin(Led_0_GPIO_Port, Led_0_Pin, Led[0]);
 	HAL_GPIO_WritePin(Led_1_GPIO_Port, Led_1_Pin, Led[1]);
 	HAL_GPIO_WritePin(Led_2_GPIO_Port, Led_2_Pin, Led[2]);
@@ -90,10 +89,19 @@ void SEL_LED_ON(int num){
 	HAL_GPIO_WritePin(Led_9_GPIO_Port, Led_9_Pin, Led[9]);
 	HAL_GPIO_WritePin(Led_10_GPIO_Port, Led_10_Pin, Led[10]);
 	HAL_GPIO_WritePin(Led_11_GPIO_Port, Led_11_Pin, Led[11]);
-
 }
 
+void SEL_LED_ON(int num){
+	calculator_Led_Clock(num);
+	loop_Led();
+}
 
+void clearAllClock(){
+	for(int i = 0; i < 11; i++){
+		Led[i] |= 0b1;
+	}
+	loop_Led();
+}
 
 
 
