@@ -10,7 +10,7 @@
 
 void System_init_Lab1(){
 	timer_init();
-	setTimer(0, 1000);
+	setTimer(0, 3000);
 
 }
 
@@ -36,7 +36,7 @@ void Exercise_2(){
 			HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, SET);
 			HAL_GPIO_WritePin(Led_Yellow_GPIO_Port, Led_Yellow_Pin, RESET);
 			HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, SET);
-			if(flag_timer3){
+			if(flag_timer[0]){
 				pre_state = state_2;
 				flag_timer[0] = 0;
 				setTimer(0, 5000);
@@ -47,7 +47,7 @@ void Exercise_2(){
 			HAL_GPIO_WritePin(Led_Red_GPIO_Port, Led_Red_Pin, RESET);
 			HAL_GPIO_WritePin(Led_Yellow_GPIO_Port, Led_Yellow_Pin, SET);
 			HAL_GPIO_WritePin(Led_Green_GPIO_Port, Led_Green_Pin, SET);
-			if(flag_timer3){
+			if(flag_timer[0]){
 				pre_state = state_0;
 				flag_timer[0] = 0;
 				setTimer(0, 3000);
