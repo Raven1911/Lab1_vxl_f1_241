@@ -4,3 +4,4 @@
 ../Core/Src/Lab1.c:85:6:loop_Led	1
 ../Core/Src/Lab1.c:100:6:setNumberOnClock	1
 ../Core/Src/Lab1.c:105:7:clearNumberOnClock	1
+../Core/Src/Lab1.c:115:6:Clock_digital	6

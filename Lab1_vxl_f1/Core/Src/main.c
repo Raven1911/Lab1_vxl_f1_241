@@ -102,18 +102,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	    if(condition){
-	    	setNumberOnClock(count);
-	    }
-	    if(!condition){
-	        clearNumberOnClock(count);
-	        }
-	    count++;
-	    if (count >11) {
-	    	count = 0;
-	    	condition = !condition;
-	    }
-	    HAL_Delay(500);
+	  Clock_digital();
 
   }
   /* USER CODE END 3 */

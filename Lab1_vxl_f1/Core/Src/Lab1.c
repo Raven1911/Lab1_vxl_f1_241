@@ -10,7 +10,7 @@
 
 void System_init_Lab1(){
 	timer_init();
-	setTimer(0, 1000);
+	setTimer(0, 100); //step second
 	clearAllClock();
 }
 
@@ -99,11 +99,45 @@ void loop_Led(){
 
 void setNumberOnClock(int num){
 	calculator_Led_Clock_ON_OFF(num, 0);
-	loop_Led();
+
 }
 
 void  clearNumberOnClock(int num){
 	calculator_Led_Clock_ON_OFF(num, 1);
-	loop_Led();
+
 }
 
+//////////////	12 LEDs display __clock	//////////////////
+int hour = 0;
+int minute = 0;
+int second = 0;
+int count = 0; //encoder 60 -> 12
+void Clock_digital(){
+	setNumberOnClock(second);
+	setNumberOnClock(minute);
+	setNumberOnClock(hour);
+	loop_Led();
+	if(flag_timer[0]){
+		clearNumberOnClock(second);
+		++second;
+		if(second >= 12){ // step second = 5s
+			count++;
+			second = 0;
+		}
+		if(count >= 5){
+			clearNumberOnClock(minute);
+			++minute;
+			count = 0;
+		}
+		if(minute >= 12){ // step minute = 5m
+			clearNumberOnClock(hour);
+			++hour;
+			minute = 0;
+		}
+		if(hour >= 12){
+			hour = 0;
+		}
+		flag_timer[0] = 0;
+	}
+
+}
